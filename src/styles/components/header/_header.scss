@@ -1,0 +1,438 @@
+@use "../../common" as *;
+
+.gradient {
+  background: $color-gradient-supersoft;
+  border-radius: 0 0 12px 12px;
+  position: relative;
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    height: 10px;
+    border-radius: 0 0 12px 12px;
+  }
+
+  &::before {
+    bottom: -10px;
+    right: 20px;
+    left: 20px;
+    background-color: #cacadb;
+  }
+
+  &::after {
+    bottom: -20px;
+    right: 40px;
+    left: 40px;
+    background-color: #e7e7f2;
+  }
+}
+
+header {
+  background-image: url(../img/bg.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto;
+  justify-content: space-between;
+  font-family: Montserrat;
+  font-weight: $font-bold;
+  border-radius: 12px;
+
+  a {
+    color: $color-simple;
+  }
+
+  .dot,
+  .facebook {
+    display: none;
+  }
+
+  .menu-holder {
+    grid-row: 2/2;
+    grid-column: 2/3;
+    align-items: center;
+    justify-self: flex-end;
+    z-index: 100;
+    padding-top: 15px;
+    padding-right: 15px;
+
+    .nav-holder {
+      display: none;
+    }
+
+    .nav {
+      position: fixed;
+      display: none;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: $color-main-regular-alfa;
+      transition: 70%;
+      height: 100vh;
+      animation: fadeInOut 0.5s ease-in-out;
+      ul {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: stretch;
+        gap: 15px;
+        width: 92%;
+        margin: 0 4%;
+        background-color: $color-simple;
+        padding: 12px;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+
+        li {
+          text-align: end;
+
+          svg {
+            stroke: $color-accent;
+            cursor: pointer;
+          }
+          a {
+            text-align: center;
+            display: block;
+            font-size: 24px;
+            border-radius: 8px;
+            padding: 7px 0;
+            background-color: $color-grey-bg;
+            color: $color-active-regular;
+          }
+
+          a:hover {
+            background-color: $color-grey-separator;
+          }
+
+          a:active {
+            color: $color-accent;
+          }
+        }
+      }
+    }
+  }
+  .logo-holder {
+    grid-column: 1/2;
+    padding-top: 15px;
+    padding-left: 15px;
+
+    img:last-child {
+      padding-bottom: 7px;
+    }
+  }
+}
+
+.setting-holder {
+  padding: 4%;
+  grid-row: 1/2;
+  grid-column: 1/-1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f5f5fa33;
+
+  .lang {
+    font-size: 12px;
+    a {
+      padding: 5px 7px 5px 7px;
+      border-radius: 8px;
+      margin-right: 3px;
+    }
+    a:hover {
+      background-color: hsla(0, 0%, 100%, 0.2);
+    }
+    a:active {
+      background-color: $color-accent;
+    }
+  }
+  .contact {
+    a:hover {
+      color: $color-accent;
+    }
+    .facebook:hover {
+      content: url("../img/fb-rose.svg");
+    }
+  }
+  .location {
+    display: none;
+  }
+}
+
+.losung {
+  grid-column: 1/-1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 50px 30px 50px;
+  padding-bottom: 30px;
+
+  h1 {
+    font-weight: $font-bold;
+    font-size: $font-hero;
+    color: $color-simple;
+    text-align: center;
+    line-height: 46.32px;
+    padding: 135px 0 160px 0;
+  }
+
+  svg {
+    rotate: -90deg;
+    transition: 1s;
+  }
+  .active {
+    rotate: 0deg;
+    transition: 1s;
+  }
+
+  svg:hover,
+  .active {
+    circle,
+    path {
+      stroke: $color-accent;
+    }
+  }
+}
+
+.public-page,
+.about-page {
+  grid-template-columns: 65% 35%;
+  background-image: none;
+  .logo-holder {
+    display: flex;
+    flex-wrap: nowrap;
+    p {
+      font-size: 20px;
+      line-height: 24.38px;
+      font-weight: $font-normal;
+      display: block;
+    }
+  }
+  .setting-holder {
+    background-color: $color-grey-bg;
+    a {
+      color: $color-grey-text;
+    }
+    .lang {
+      a:hover {
+        background-color: $color-grey-bg;
+      }
+      a:active {
+        background-color: $color-accent;
+      }
+    }
+  }
+  .menu-holder {
+    .burger:hover {
+      background-color: $color-grey-separator;
+      border-radius: 8px;
+    }
+  }
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    display: none;
+  }
+
+  50% {
+    opacity: 0.5;
+    display: block;
+  }
+
+  100% {
+    opacity: 1;
+    display: block;
+  }
+}
+
+@include tabletSD {
+  header {
+    background-image: url("../img/bg-tablet-SD.png");
+    height: 1024px;
+    padding: 50px 60px 0 60px;
+    gap: 30px;
+    .menu-holder,
+    .logo-holder {
+      padding: 0;
+      margin: 0;
+    }
+
+    .menu-holder {
+      display: flex;
+      grid-column: 1/-1;
+      grid-row: 3/4;
+      justify-self: start;
+      .nav,
+      .burger {
+        display: none;
+      }
+
+      .nav-holder {
+        display: block;
+        ul {
+          display: flex;
+          flex-direction: row;
+          gap: 15px;
+
+          a:hover {
+            border-bottom: 2px solid $color-simple;
+          }
+          a:active {
+            color: $color-accent;
+            border-bottom: 2px solid $color-accent;
+          }
+        }
+      }
+    }
+    .logo-holder {
+      img:first-child {
+        height: 60px;
+      }
+      img:last-child {
+        display: none;
+      }
+    }
+    .setting-holder {
+      background-color: transparent;
+      justify-content: start;
+      gap: 6px;
+      padding: 0;
+      .location {
+        display: flex;
+        gap: 6px;
+        color: $color-grey-text;
+        font-weight: $font-normal;
+        line-height: 19.5px;
+      }
+      .contact {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        .facebook {
+          width: 24px;
+        }
+      }
+    }
+    .dot,
+    .facebook {
+      display: block;
+    }
+
+    .losung {
+      height: 804px;
+      padding: 0;
+
+      h1 {
+        padding: 250px 0 410px 0;
+      }
+    }
+  }
+
+  .public-page,
+  .about-page {
+    background-image: none;
+    height: auto;
+    gap: 15px;
+    .setting-holder {
+      background-color: #fff;
+      margin: 0;
+    }
+    .menu-holder {
+      margin: 0;
+      a {
+        color: $color-active-regular;
+      }
+      .nav-holder {
+        ul {
+          a:hover {
+            border-bottom: 2px solid $color-active-regular;
+          }
+          a:active {
+            color: $color-accent;
+            border-bottom: 2px solid $color-accent;
+          }
+        }
+      }
+    }
+
+    .logo-holder {
+      display: flex;
+      margin: 0;
+      a {
+        display: flex;
+      }
+      img:last-child {
+        display: block;
+        height: 47px;
+        width: 21px;
+      }
+      p {
+        font-size: 36px;
+        line-height: 43.88px;
+      }
+    }
+  }
+}
+
+@include tabletHD {
+  header {
+    background-image: url("../img/bg.png");
+    height: 768px;
+    background-size: contain;
+    grid-template-columns: 40% 60%;
+    gap: 16px;
+    .logo-holder {
+      grid-row: 1/3;
+      margin: 0;
+    }
+    .setting-holder,
+    .menu-holder {
+      grid-column: 2/3;
+      justify-self: end;
+    }
+    .menu-holder {
+      grid-row: 2/3;
+    }
+    .losung {
+      h1 {
+        padding: 230px 0 290px 0;
+      }
+    }
+  }
+  .public-page,
+  .about-page {
+    grid-template-columns: 40% 60%;
+  }
+}
+
+@include desctopSD {
+  header {
+    height: 800px;
+    .losung {
+      h1 {
+        padding: 250px 0 300px 0;
+      }
+    }
+  }
+}
+
+@include desctopHD {
+  header {
+    height: 1000px;
+    padding: 50px 160px 0 160px;
+    .losung {
+      h1 {
+        padding: 300px 0 400px 0;
+      }
+    }
+  }
+  .public-page,
+  .about-page {
+    padding: 50px 160px 0px 160px;
+  }
+}
